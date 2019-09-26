@@ -15,6 +15,7 @@ public class Decrypt {
     private final String cI = "AES/ECB/PKCS5Padding";
     private final String initVector = "encryptionIntVec";
     private final String TEXT_FORMAT = "UTF-8";
+    private final String SECURITY_FORMAT = "SHA-1";
     
     public SecretKeySpec setKey(String myKey)
     {
@@ -22,11 +23,11 @@ public class Decrypt {
         SecretKeySpec secretKey;
         MessageDigest sha = null;
         try {
-            key = myKey.getBytes("UTF-8");
-            sha = MessageDigest.getInstance("SHA-1");
+            key = myKey.getBytes(TEXT_FORMAT);
+            sha = MessageDigest.getInstance(SECURITY_FORMAT);
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
-            secretKey = new SecretKeySpec(key, "AES");
+            secretKey = new SecretKeySpec(key, AES_ALGORITHM);
             return secretKey;
             
         }
@@ -41,7 +42,7 @@ public class Decrypt {
     }
  
     /**
-     * Función de tipo String que recibe una llave (key), un vector de inicialización (iv)
+     * FunciÃ³n de tipo String que recibe una llave (key), un vector de inicializaciÃ³n (iv)
      * y el texto que se desea descifrar
      * @param key la llave en tipo String a utilizar
      * @param encrypted el texto cifrado en modo String
