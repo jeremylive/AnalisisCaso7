@@ -28,6 +28,7 @@ public class Decrypt {
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivParameterSpec);
             byte[] decrypted = cipher.doFinal(enc);
             return new String(decrypted);
+            
     }
  
 }
